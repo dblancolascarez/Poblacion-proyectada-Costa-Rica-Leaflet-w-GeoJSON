@@ -1,52 +1,52 @@
-# Proyecto de Mapeo de Población Proyectada
+# Project of Projected Population Mapping
 
-**Dirección de Sitio Web:**  
+**Website Link:**
 [https://poblacionproyectadacostarica.netlify.app/](https://poblacionproyectadacostarica.netlify.app/)
 
-## Introducción
+## Introduction
 
-El siguiente proyecto se trabajó en **Grass GIS** y **QGIS** (abreviatura de *Quantum Geographic Information System*), que es un programa de código abierto y gratuito especializado en Sistemas de Información Geográfica (GIS) que permite trabajar con datos espaciales. 
+This project was developed using **Grass GIS** and **QGIS** (Quantum Geographic Information System), which is an open-source and free program specialized in Geographic Information Systems (GIS) that allows working with spatial data.
 
-Seguidamente, se trabajó en **HTML** junto con **JavaScript** y las librerías necesarias para poder mostrar el mapeado de lo especificado, con las coordenadas proyectadas en **OpenStreetMap**.
+Next, **HTML** was used along with **JavaScript** and the necessary libraries to display the mapping as specified, with the projected coordinates shown in **OpenStreetMap**.
 
-## Creación de Datos Vectoriales
+## Creation of Vector Data
 
-Se han tomado como base los datos de los cantones y se agregó una columna de **población proyectada**.
+The data for the cantons were used as the base, and a new column for **projected population** was added.
 
-## Exportación de Archivos GeoJSON
+## Exporting GeoJSON Files
 
-Los archivos fueron exportados a **GeoJSON** mediante **QGIS**, el cual ofrece una exportación de capa fácil mediante un clic derecho en la capa y seleccionando "Exportar".
+The files were exported to **GeoJSON** using **QGIS**, which offers an easy layer export feature by right-clicking on the layer and selecting "Export."
 
-## Creación de La Página Web
+## Creation of the Website
 
-Utilizando **HTML**, se ha incluido la librería **Leaflet**, que permite mostrar mapas interactivos de algún proveedor determinado. 
+Using **HTML**, the **Leaflet** library was included, which enables interactive maps from a chosen provider.
 
-Importando **Leaflet**, se agregó una capa de mapa base del proveedor **OpenStreetMap** a la página web.
+By importing **Leaflet**, a base map layer from **OpenStreetMap** was added to the website.
 
-Por medio de **JavaScript**, se implementó un sistema de capas donde se pueden cambiar, por medio de botones, cada capa sobre el mapa de **Costa Rica** en **OpenStreetMap**. 
+Through **JavaScript**, a system of layers was implemented where users can switch between layers on the **Costa Rica** map in **OpenStreetMap** using buttons.
 
-Cabe recalcar que la proyección de las coordenadas en **OpenStreetMap** es **EPSG:4326**, o mejor conocida como **WGS 84** (World Geodetic System 1984).
+It is important to note that the projection of coordinates in **OpenStreetMap** is **EPSG:4326**, also known as **WGS 84** (World Geodetic System 1984).
 
-## Hosting de Sitio Web
+## Website Hosting
 
-El proyecto fue subido mediante la aplicación de hosting **Netlify**. Se subió el programa a un repositorio de **GitHub**, y mediante el uso de **Netlify**, se puede alojar la función “main” de dicho **GitHub** para poder ejecutar el programa mediante un link en la web.
+The project was hosted using the hosting application **Netlify**. The program was uploaded to a **GitHub** repository, and through **Netlify**, the “main” function of the **GitHub** repository can be hosted to run the program via a web link.
 
-## Creación de Capas
+## Layer Creation
 
-### Cantones
+### Cantons
 
-Fue utilizada una capa vectorial con proyección **CRTM05**, que contiene todos los cantones del territorio de **Costa Rica**, la cual fue la base para crear el resto de las capas.
+A vector layer with the **CRTM05** projection, which contains all the cantons in **Costa Rica**, was used as the base to create the remaining layers.
 
-### Puntos Aleatorios
+### Random Points
 
-Los puntos aleatorios fueron creados utilizando la función de **v.random** de **Grass**.
+Random points were created using the **v.random** function in **Grass**.
 
-### Mapas de Calor
+### Heatmaps
 
-Los mapas de calor fueron creados utilizando **v.surf.rst** de **Grass**, y utilizando la función **Heatmap (Kernel Density Estimation)** de **QGIS**. Ambas realizan la misma función de interpolar un plano ráster. Las capas interpoladas fueron las de puntos aleatorios. Para efectos de la representación en web, no fue posible que cargara en **OpenStreetMap** debido a la complejidad del archivo.
+Heatmaps were created using **v.surf.rst** in **Grass**, along with the **Heatmap (Kernel Density Estimation)** function in **QGIS**. Both perform the same function of interpolating a raster map. The interpolated layers used were the random points. For web display, it was not possible to load them in **OpenStreetMap** due to the complexity of the file.
 
-### Hospitales/Escuelas
+### Hospitals/Schools
 
-**(Imagen de ejemplo: Hospitales mayor población 2022)**
+**(Example image: Hospitals with the highest population 2022)**
 
-Para la creación de los puntos de hospitales y escuelas con más población, se utiliza la capa de **Heatmap**, ya que esta posee valores de la cantidad de población por zona. Se filtran ambas capas (mapa de calor y puntos de hospitales) y se realiza un filtro mediante una **calculadora ráster**. El filtro elige únicamente los puntos que posean un valor mayor a 20 (parámetro que establece población por zona de 0-36).
+To create points for hospitals and schools with the highest population, the **Heatmap** layer was used because it contains values for the population per area. Both layers (heatmap and hospital points) were filtered through a **raster calculator**. The filter selects only the points with a value greater than 20 (a parameter that defines the population per zone as 0-36).
